@@ -16,34 +16,32 @@
         android:textColor="@color/colorWhite"
         android:textSize="25sp"
         android:layout_marginLeft="50dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="8dp"
         android:layout_marginRight="100dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.084"
-        />
+        app:layout_constraintVertical_bias="0.084" />
 
     <EditText
         android:id="@+id/timeEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:autofillHints=""
+        android:layout_marginBottom="4dp"
         android:ems="8"
         android:inputType="time"
         android:text="@string/_15_00"
         android:textColor="@color/colorWhite"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintBottom_toTopOf="@+id/changeLocationButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintRight_toLeftOf="@id/dateEditText"
         app:layout_constraintStart_toEndOf="@+id/dateEditText"
@@ -64,14 +62,14 @@
         android:text="@string/_1_11_19"
         android:textColor="@color/colorWhite"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintBottom_toTopOf="@+id/cityTextView"
         app:layout_constraintEnd_toStartOf="@+id/timeEditText"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:importantForAutofill="no" />
 
     <Button
-        android:id="@+id/changeLocationbutton"
+        android:id="@+id/changeLocationButton"
         android:onClick="changeCity"
         android:layout_width="195dp"
         android:layout_height="45dp"
@@ -87,9 +85,8 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintStart_toEndOf="@+id/cityTextView"
         app:layout_constraintTop_toBottomOf="@+id/timeEditText" />
-
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -99,11 +96,12 @@
         android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
+        app:layout_constraintTop_toBottomOf="@+id/changeLocationButton">
 
         <EditText
             android:id="@+id/monTextView"
@@ -168,20 +166,20 @@
             android:textColor="@color/colorWhite"
             android:textSize="22sp" />
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="405dp"
-        android:layout_height="77dp"
+        android:layout_height="65dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         app:layout_constraintVertical_bias="0.005">
@@ -189,53 +187,53 @@
         <ImageView
             android:id="@+id/monImageView"
             android:layout_width="58dp"
-            android:layout_height="70dp"
+            android:layout_height="60dp"
             app:srcCompat="@drawable/snow"
-            tools:ignore="VectorDrawableCompat"
-            android:contentDescription="TODO" />
+            tools:ignore="VectorDrawableCompat" />
 
         <ImageView
             android:id="@+id/tueImageView"
             android:layout_width="58dp"
-            android:layout_height="70dp"
+            android:layout_height="60dp"
             app:srcCompat="@drawable/cloud"
             tools:ignore="VectorDrawableCompat" />
 
         <ImageView
             android:id="@+id/wedImageView"
             android:layout_width="58dp"
-            android:layout_height="70dp"
+            android:layout_height="60dp"
             app:srcCompat="@drawable/flash"
             tools:ignore="VectorDrawableCompat"/>
 
         <ImageView
             android:id="@+id/thuImageView"
             android:layout_width="58dp"
-            android:layout_height="70dp"
+            android:layout_height="60dp"
             app:srcCompat="@drawable/cloud"
             tools:ignore="VectorDrawableCompat"/>
 
         <ImageView
             android:id="@+id/fryImageView"
             android:layout_width="58dp"
-            android:layout_height="70dp"
+            android:layout_height="60dp"
             app:srcCompat="@drawable/sun"
             tools:ignore="VectorDrawableCompat"/>
 
         <ImageView
             android:id="@+id/satImageView"
             android:layout_width="58dp"
-            android:layout_height="70dp"
+            android:layout_height="60dp"
             app:srcCompat="@drawable/flash"
             tools:ignore="VectorDrawableCompat"/>
 
         <ImageView
             android:id="@+id/sunImageView"
             android:layout_width="58dp"
-            android:layout_height="70dp"
+            android:layout_height="60dp"
             app:srcCompat="@drawable/umbrella"
             tools:ignore="VectorDrawableCompat"/>
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="395dp"
         android:layout_height="366dp"
@@ -254,7 +252,7 @@
         <EditText
             android:id="@+id/mondayTextView"
             android:layout_width="match_parent"
-            android:layout_height="55dp"
+            android:layout_height="50dp"
             android:inputType="numberSigned"
             android:text="@string/monday"
             android:textColor="@color/colorWhite"
@@ -263,7 +261,7 @@
         <EditText
             android:id="@+id/tuesdayTextView"
             android:layout_width="match_parent"
-            android:layout_height="55dp"
+            android:layout_height="50dp"
             android:inputType="numberSigned"
             android:text="@string/tuesday"
             android:textColor="@color/colorWhite"
@@ -272,7 +270,7 @@
         <EditText
             android:id="@+id/wednesdayTextView"
             android:layout_width="match_parent"
-            android:layout_height="55dp"
+            android:layout_height="50dp"
             android:inputType="numberSigned"
             android:text="@string/wednesday"
             android:textColor="@color/colorWhite"
@@ -281,7 +279,7 @@
         <EditText
             android:id="@+id/thursdayTextView"
             android:layout_width="match_parent"
-            android:layout_height="55dp"
+            android:layout_height="50dp"
             android:inputType="numberSigned"
             android:text="@string/thursday"
             android:textColor="@color/colorWhite"
@@ -290,7 +288,7 @@
         <EditText
             android:id="@+id/fridayTextView"
             android:layout_width="match_parent"
-            android:layout_height="55dp"
+            android:layout_height="50dp"
             android:inputType="numberSigned"
             android:text="@string/friday"
             android:textColor="@color/colorWhite"
@@ -299,7 +297,7 @@
         <EditText
             android:id="@+id/saturdayTextView"
             android:layout_width="match_parent"
-            android:layout_height="55dp"
+            android:layout_height="50dp"
             android:inputType="numberSigned"
             android:text="@string/saturday"
             android:textColor="@color/colorWhite"
@@ -308,14 +306,12 @@
         <EditText
             android:id="@+id/sundayTextView"
             android:layout_width="match_parent"
-            android:layout_height="55dp"
+            android:layout_height="50dp"
             android:inputType="numberSigned"
             android:text="@string/sunday"
             android:textColor="@color/colorWhite"
             android:textSize="22sp" />
 
     </LinearLayout>
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
