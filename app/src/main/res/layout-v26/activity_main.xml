@@ -11,157 +11,140 @@
         android:id="@+id/cityTextView"
         android:layout_width="116dp"
         android:layout_height="45dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp"
         android:fontFamily="#F7F2F3"
         android:text="@string/moscow"
         android:textColor="@color/colorWhite"
         android:textSize="25sp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginRight="100dp"
-        android:layout_marginBottom="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.128"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.084" />
+        app:layout_constraintVertical_bias="0.055" />
 
-    <EditText
-        android:id="@+id/timeEditText"
+    <TextView
+
+        android:id="@+id/timeTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:layout_marginLeft="4dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="2dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginBottom="2dp"
         android:ems="8"
-        android:inputType="time"
+        android:fontFamily="serif"
         android:text="@string/_15_00"
         android:textColor="@color/colorWhite"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/changeLocationButton"
+        app:layout_constraintBottom_toTopOf="@+id/changeLocation"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/dateEditText"
-        app:layout_constraintStart_toEndOf="@+id/dateEditText"
+        app:layout_constraintRight_toLeftOf="@id/dateTextView"
+        app:layout_constraintStart_toEndOf="@+id/dateTextView"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/dateEditText"
+    <TextView
+        android:id="@+id/dateTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="2dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="2dp"
         android:ems="8"
-        android:inputType="date"
         android:text="@string/_1_11_19"
         android:textColor="@color/colorWhite"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/cityTextView"
-        app:layout_constraintEnd_toStartOf="@+id/timeEditText"
+        app:layout_constraintEnd_toStartOf="@+id/timeTextView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:importantForAutofill="no" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/changeLocationButton"
-        android:onClick="changeCity"
+        android:id="@+id/changeLocation"
         android:layout_width="195dp"
-        android:layout_height="45dp"
+        android:layout_height="40dp"
         android:layout_marginStart="50dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="2dp"
         android:layout_marginEnd="30dp"
-        android:layout_marginRight="30dp"
+        android:layout_marginBottom="2dp"
         android:background="@color/cardview_shadow_end_color"
         android:fontFamily="#F7F2F3"
+        android:onClick="changeCity"
         android:text="@string/change_location"
         android:textColor="@color/colorWhite"
         android:textSize="18sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/cityTextView"
-        app:layout_constraintTop_toBottomOf="@+id/timeEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/timeTextView" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="392dp"
-        android:layout_height="64dp"
+        android:layout_width="390dp"
+        android:layout_height="50dp"
         android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="4dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/changeLocationButton">
+        app:layout_constraintTop_toBottomOf="@+id/changeLocation"
+        app:layout_constraintBottom_toTopOf="@id/linearLayout">
 
-        <EditText
+        <TextView
             android:id="@+id/monTextView"
             android:layout_width="58dp"
             android:layout_height="70dp"
-            android:inputType="numberSigned"
             android:text="@string/mon"
             android:textColor="@color/colorWhite"
             android:textSize="22sp" />
 
-        <EditText
+        <TextView
             android:id="@+id/tueTextView"
             android:layout_width="58dp"
             android:layout_height="70dp"
-            android:inputType="numberSigned"
             android:text="@string/tue"
             android:textColor="@color/colorWhite"
             android:textSize="22sp" />
 
-        <EditText
+        <TextView
             android:id="@+id/wedTextView"
             android:layout_width="58dp"
             android:layout_height="70dp"
-            android:inputType="numberSigned"
             android:text="@string/wed"
             android:textColor="@color/colorWhite"
             android:textSize="22sp" />
 
-        <EditText
+        <TextView
             android:id="@+id/thuTextView"
             android:layout_width="58dp"
             android:layout_height="70dp"
-            android:inputType="numberSigned"
             android:text="@string/thu"
             android:textColor="@color/colorWhite"
             android:textSize="22sp" />
 
-        <EditText
+        <TextView
             android:id="@+id/friTextView"
             android:layout_width="58dp"
             android:layout_height="70dp"
-            android:inputType="numberSigned"
             android:text="@string/fri"
             android:textColor="@color/colorWhite"
             android:textSize="22sp" />
 
-        <EditText
+        <TextView
             android:id="@+id/satTextView"
             android:layout_width="58dp"
             android:layout_height="70dp"
-            android:inputType="numberSigned"
             android:text="@string/sat"
             android:textColor="@color/colorWhite"
             android:textSize="22sp" />
 
-        <EditText
+        <TextView
             android:id="@+id/sunTextView"
             android:layout_width="58dp"
             android:layout_height="70dp"
-            android:inputType="numberSigned"
             android:text="@string/sun"
             android:textColor="@color/colorWhite"
             android:textSize="22sp" />
@@ -172,22 +155,21 @@
         android:layout_width="405dp"
         android:layout_height="65dp"
         android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.005">
+        app:layout_constraintVertical_bias="0.001">
 
         <ImageView
             android:id="@+id/monImageView"
             android:layout_width="58dp"
             android:layout_height="60dp"
+            android:contentDescription="@string/mon"
             app:srcCompat="@drawable/snow"
             tools:ignore="VectorDrawableCompat" />
 
@@ -195,6 +177,7 @@
             android:id="@+id/tueImageView"
             android:layout_width="58dp"
             android:layout_height="60dp"
+            android:contentDescription="@string/tue"
             app:srcCompat="@drawable/cloud"
             tools:ignore="VectorDrawableCompat" />
 
@@ -202,6 +185,7 @@
             android:id="@+id/wedImageView"
             android:layout_width="58dp"
             android:layout_height="60dp"
+            android:contentDescription="@string/wed"
             app:srcCompat="@drawable/flash"
             tools:ignore="VectorDrawableCompat"/>
 
@@ -209,6 +193,7 @@
             android:id="@+id/thuImageView"
             android:layout_width="58dp"
             android:layout_height="60dp"
+            android:contentDescription="@string/thu"
             app:srcCompat="@drawable/cloud"
             tools:ignore="VectorDrawableCompat"/>
 
@@ -216,6 +201,7 @@
             android:id="@+id/fryImageView"
             android:layout_width="58dp"
             android:layout_height="60dp"
+            android:contentDescription="@string/fri"
             app:srcCompat="@drawable/sun"
             tools:ignore="VectorDrawableCompat"/>
 
@@ -223,6 +209,7 @@
             android:id="@+id/satImageView"
             android:layout_width="58dp"
             android:layout_height="60dp"
+            android:contentDescription="@string/sat"
             app:srcCompat="@drawable/flash"
             tools:ignore="VectorDrawableCompat"/>
 
@@ -230,6 +217,7 @@
             android:id="@+id/sunImageView"
             android:layout_width="58dp"
             android:layout_height="60dp"
+            android:contentDescription="@string/sun"
             app:srcCompat="@drawable/umbrella"
             tools:ignore="VectorDrawableCompat"/>
     </LinearLayout>
@@ -238,10 +226,8 @@
         android:layout_width="395dp"
         android:layout_height="366dp"
         android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -249,65 +235,58 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
-        <EditText
+        <TextView
             android:id="@+id/mondayTextView"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:inputType="numberSigned"
             android:text="@string/monday"
             android:textColor="@color/colorWhite"
             android:textSize="22sp" />
 
-        <EditText
+        <TextView
             android:id="@+id/tuesdayTextView"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:inputType="numberSigned"
             android:text="@string/tuesday"
             android:textColor="@color/colorWhite"
             android:textSize="22sp" />
 
-        <EditText
+        <TextView
             android:id="@+id/wednesdayTextView"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:inputType="numberSigned"
             android:text="@string/wednesday"
             android:textColor="@color/colorWhite"
             android:textSize="22sp" />
 
-        <EditText
+        <TextView
             android:id="@+id/thursdayTextView"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:inputType="numberSigned"
             android:text="@string/thursday"
             android:textColor="@color/colorWhite"
             android:textSize="22sp" />
 
-        <EditText
+        <TextView
             android:id="@+id/fridayTextView"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:inputType="numberSigned"
             android:text="@string/friday"
             android:textColor="@color/colorWhite"
             android:textSize="22sp" />
 
-        <EditText
+        <TextView
             android:id="@+id/saturdayTextView"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:inputType="numberSigned"
             android:text="@string/saturday"
             android:textColor="@color/colorWhite"
             android:textSize="22sp" />
 
-        <EditText
+        <TextView
             android:id="@+id/sundayTextView"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:inputType="numberSigned"
             android:text="@string/sunday"
             android:textColor="@color/colorWhite"
             android:textSize="22sp" />

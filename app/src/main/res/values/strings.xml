@@ -21,5 +21,6 @@
     <string name="search_location">Search location</string>
     <string name="wind_speed">Wind speed</string>
     <string name="presure">Presure</string>
+    <string name="back">Back</string>
 
 </resources>
