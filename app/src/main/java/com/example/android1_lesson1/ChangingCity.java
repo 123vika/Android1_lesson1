@@ -38,9 +38,6 @@ public class ChangingCity extends AppCompatActivity {
             }
         });
 
-//        findViewById(R.id.presure).setOnClickListener();
-//        findViewById(R.id.windSpeed).setOnClickListener();
-
         ListView listView = findViewById(R.id.listView);
         ArrayList<String> posts = new ArrayList<>();
         posts.add("Saint Petersburg");
