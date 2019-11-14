@@ -40,7 +40,6 @@ public class MainActivity extends AppCompatActivity implements Constants{
         cityTextView = findViewById(R.id.cityTextView);
         cityTextView.setText(cityName);
 
-
         findViewById(R.id.changeLocation).setOnClickListener(new View.OnClickListener() {
 
             @Override
