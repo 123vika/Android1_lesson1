@@ -2,7 +2,6 @@ package com.example.android1_lesson1;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,19 +10,36 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
-
+import android.widget.TextView;
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements Constants{
 
     private static final String TAG  = "MainActivity";
+    TextView cityTextView;
+    String cityName;
+    int    temp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Toast.makeText(getApplicationContext(),"onCreate",Toast.LENGTH_LONG).show();
-        Log.i ( TAG , "onCreate");
+        showLog("onCreate");
         setContentView(R.layout.activity_main);
+
+        if (getIntent().getExtras()!=null) {
+            cityName = getIntent().getExtras().getString(TEXT); // получить данные из Intent
+            temp     = getIntent().getExtras().getInt(TEMP);
+        }
+        else {
+            cityName = "Moscow";
+        }
+
+        Log.i ( TAG , "cityName = "+ cityName);
+        Log.i ( TAG , "temp = "+ temp);
+
+        cityTextView = findViewById(R.id.cityTextView);
+        cityTextView.setText(cityName);
+
 
         findViewById(R.id.changeLocation).setOnClickListener(new View.OnClickListener() {
 
@@ -33,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
     void openChangingCity (){
         startActivity(new Intent(this,ChangingCity.class));
     }
@@ -42,48 +57,41 @@ public class MainActivity extends AppCompatActivity {
         Log.d("Start","city");
         Intent city = new Intent(MainActivity.this, ChangingCity.class);
         startActivity(city);
-
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        Log.d("Start","onStart");
-        Toast.makeText(getApplicationContext(),"onStart",Toast.LENGTH_LONG).show();
-        Log.i(TAG,"onStart");
+        showLog("onStart");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        Log.d("Start","onResume");
-        Toast.makeText(getApplicationContext(),"onResume",Toast.LENGTH_LONG).show();
-        Log.i(TAG,"onResume");
+        showLog("onResume");
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        Log.d("Start","onPause");
-        Toast.makeText(getApplicationContext(),"onPause",Toast.LENGTH_LONG).show();
-        Log.i(TAG,"onPause");
+        showLog("onPause");
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        Log.d("Start","onStop");
-        Toast.makeText(getApplicationContext(),"onStop",Toast.LENGTH_LONG).show();
-        Log.i(TAG,"onStop");
+        showLog("onStop");
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Log.d("Start","onDestroy");
-        Toast.makeText(getApplicationContext(),"onDestroy",Toast.LENGTH_LONG).show();
-        Log.i(TAG,"onDestroy");
+        showLog("onDestroy");
     }
 
-
+    private void showLog(String text) {
+        Log.d("Start", text);
+        Toast.makeText(getApplicationContext(), text, Toast.LENGTH_LONG).show();
+        Log.i(TAG, text);
+    }
 }

@@ -22,5 +22,12 @@
     <string name="wind_speed">Wind speed</string>
     <string name="presure">Presure</string>
     <string name="back">Back</string>
+    <string name="saintPetersburg">Saint Petersburg</string>
+    <string name="london">London</string>
+    <string name="paris">Paris</string>
+    <string name="dubai">Dubai</string>
+    <string name="newYork">New York</string>
+    <string name="tokyo">Tokyo</string>
+    <string name="telAviv">Tel Aviv</string>
 
 </resources>
