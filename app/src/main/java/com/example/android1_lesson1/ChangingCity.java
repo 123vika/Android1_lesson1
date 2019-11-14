@@ -71,6 +71,7 @@ public class ChangingCity extends AppCompatActivity implements Constants{
 
     private void restoreData (Bundle savedInstanceState) {
         Log.i ( TAG , "on11 "+savedInstanceState);
+        
         if (savedInstanceState == null)
             return;
         searchLocation.setText(savedInstanceState.getString(CITY_NAME, "Search location!!"));
