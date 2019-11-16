@@ -129,9 +129,7 @@ public class MainActivity extends AppCompatActivity implements Constants{
 }
 
 
-
-
-// Log.i ( TAG , "cityName = "+ cityName);
-//        Log.i ( TAG , "temp = "+ temp);
- //                (TAG, "pressure:"+ pressure)
-//              (TAG, "wind speed:"+ windSpeed)
+//       ( TAG , "cityName = "+ cityName);
+//       ( TAG , "temp = "+ temp);
+ //      (TAG, "pressure:"+ pressure)
+//       (TAG, "wind speed:"+ windSpeed)
