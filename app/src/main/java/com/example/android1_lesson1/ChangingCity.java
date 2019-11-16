@@ -19,6 +19,9 @@ public class ChangingCity extends AppCompatActivity implements Constants{
     private static final String TAG  = "ChangingCity";
     String cityName ;
     Intent intent;
+    int    temp = 5;
+    int pressure = 30;
+    int windSpeed = 50;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +65,9 @@ public class ChangingCity extends AppCompatActivity implements Constants{
                  intent = new Intent(ChangingCity.this ,MainActivity.class);
 
                  intent.putExtra(TEXT,cityName);
-                 intent.putExtra(TEMP,5);
+                 intent.putExtra(TEMP,temp);
+                 intent.putExtra(PRESSURE,pressure);
+                 intent.putExtra(WIND_SPEED,windSpeed);
 
                  startActivity(intent);
             }
@@ -71,7 +76,7 @@ public class ChangingCity extends AppCompatActivity implements Constants{
 
     private void restoreData (Bundle savedInstanceState) {
         Log.i ( TAG , "on11 "+savedInstanceState);
-        
+
         if (savedInstanceState == null)
             return;
         searchLocation.setText(savedInstanceState.getString(CITY_NAME, "Search location!!"));

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/mondayTextView"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="@string/monday"
+        android:textColor="@color/colorWhite"
+        android:textSize="22sp" />
+
+    <TextView
+        android:id="@+id/tuesdayTextView"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="@string/tuesday"
+        android:textColor="@color/colorWhite"
+        android:textSize="22sp" />
+
+    <TextView
+        android:id="@+id/wednesdayTextView"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="@string/wednesday"
+        android:textColor="@color/colorWhite"
+        android:textSize="22sp" />
+
+    <TextView
+        android:id="@+id/thursdayTextView"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="@string/thursday"
+        android:textColor="@color/colorWhite"
+        android:textSize="22sp" />
+
+    <TextView
+        android:id="@+id/fridayTextView"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="@string/friday"
+        android:textColor="@color/colorWhite"
+        android:textSize="22sp" />
+
+    <TextView
+        android:id="@+id/saturdayTextView"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="@string/saturday"
+        android:textColor="@color/colorWhite"
+        android:textSize="22sp" />
+
+    <TextView
+        android:id="@+id/sundayTextView"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="@string/sunday"
+        android:textColor="@color/colorWhite"
+        android:textSize="22sp" />
+
+</LinearLayout>

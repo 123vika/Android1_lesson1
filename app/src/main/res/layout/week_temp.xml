@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/todayTextView"
+        android:layout_width="110dp"
+        android:layout_height="63dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginRight="4dp"
+        android:text="@string/today"
+        android:textColor="@color/colorWhite"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tempTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/tempTextView"
+        android:layout_width="125dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginBottom="2dp"
+        android:text="@string/temp"
+        android:textColor="@color/colorWhite"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toTopOf="@+id/pressureTextView"
+        app:layout_constraintEnd_toStartOf="@+id/tempTextView2"
+        app:layout_constraintStart_toEndOf="@+id/todayTextView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/tempTextView2"
+        android:layout_width="125dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginRight="36dp"
+        android:layout_marginBottom="2dp"
+        android:text="@string/temptoday"
+        android:textColor="@color/colorWhite"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toTopOf="@+id/pressureTextView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tempTextView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/pressureTextView"
+        android:layout_width="125dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginBottom="2dp"
+        android:text="@string/pressure"
+        android:textColor="@color/colorWhite"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toTopOf="@+id/windSpeedTextView"
+        app:layout_constraintEnd_toStartOf="@+id/pressureTextView2"
+        app:layout_constraintStart_toEndOf="@+id/todayTextView"
+        app:layout_constraintTop_toBottomOf="@+id/tempTextView" />
+
+    <TextView
+        android:id="@+id/pressureTextView2"
+        android:layout_width="125dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginRight="36dp"
+        android:layout_marginBottom="2dp"
+        android:text="@string/pressuretoday"
+        android:textColor="@color/colorWhite"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toTopOf="@+id/windSpeedTextView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/pressureTextView"
+        app:layout_constraintTop_toBottomOf="@+id/tempTextView2" />
+
+    <TextView
+        android:id="@+id/windSpeedTextView"
+        android:layout_width="125dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginBottom="2dp"
+        android:text="@string/wind_speed_today"
+        android:textColor="@color/colorWhite"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/windSpeedTextView2"
+        app:layout_constraintHorizontal_bias="0.13"
+        app:layout_constraintStart_toEndOf="@+id/todayTextView"
+        app:layout_constraintTop_toBottomOf="@+id/pressureTextView" />
+
+    <TextView
+        android:id="@+id/windSpeedTextView2"
+        android:layout_width="125dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginBottom="2dp"
+        android:text="@string/wind_today"
+        android:textColor="@color/colorWhite"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.131"
+        app:layout_constraintStart_toEndOf="@+id/pressureTextView"
+        app:layout_constraintTop_toBottomOf="@id/pressureTextView2" />
+
+
+    <!--
+    <TextView
+        android:id="@+id/monTextView"
+        android:layout_width="58dp"
+        android:layout_height="70dp"
+        android:text="@string/mon"
+        android:textColor="@color/colorWhite"
+        android:textSize="22sp" />
+
+    <TextView
+        android:id="@+id/tueTextView"
+        android:layout_width="58dp"
+        android:layout_height="70dp"
+        android:text="@string/tue"
+        android:textColor="@color/colorWhite"
+        android:textSize="22sp" />
+
+    <TextView
+        android:id="@+id/wedTextView"
+        android:layout_width="58dp"
+        android:layout_height="70dp"
+        android:text="@string/wed"
+        android:textColor="@color/colorWhite"
+        android:textSize="22sp" />
+
+    <TextView
+        android:id="@+id/thuTextView"
+        android:layout_width="58dp"
+        android:layout_height="70dp"
+        android:text="@string/thu"
+        android:textColor="@color/colorWhite"
+        android:textSize="22sp" />
+
+    <TextView
+        android:id="@+id/friTextView"
+        android:layout_width="58dp"
+        android:layout_height="70dp"
+        android:text="@string/fri"
+        android:textColor="@color/colorWhite"
+        android:textSize="22sp" />
+
+    <TextView
+        android:id="@+id/satTextView"
+        android:layout_width="58dp"
+        android:layout_height="70dp"
+        android:text="@string/sat"
+        android:textColor="@color/colorWhite"
+        android:textSize="22sp" />
+
+    <TextView
+        android:id="@+id/sunTextView"
+        android:layout_width="58dp"
+        android:layout_height="70dp"
+        android:text="@string/sun"
+        android:textColor="@color/colorWhite"
+        android:textSize="22sp" /> -->
+
+</androidx.constraintlayout.widget.ConstraintLayout>

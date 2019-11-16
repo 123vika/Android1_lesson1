@@ -17,8 +17,14 @@ public class MainActivity extends AppCompatActivity implements Constants{
 
     private static final String TAG  = "MainActivity";
     TextView cityTextView;
+    TextView tempTextView;
+    TextView pressTextView;
+    TextView windTextView;
+
     String cityName;
-    int    temp;
+    int temp;
+    int pressure;
+    int windSpeed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,16 +35,43 @@ public class MainActivity extends AppCompatActivity implements Constants{
         if (getIntent().getExtras()!=null) {
             cityName = getIntent().getExtras().getString(TEXT); // получить данные из Intent
             temp     = getIntent().getExtras().getInt(TEMP);
+            pressure = getIntent().getExtras().getInt(PRESSURE);
+            windSpeed = getIntent().getExtras().getInt(WIND_SPEED);
         }
         else {
+
+            //
+            // default value
+            //
+
             cityName = "Moscow";
+            temp = 10;
+            pressure = 25;
+            windSpeed = 55;
+
         }
 
         Log.i ( TAG , "cityName = "+ cityName);
         Log.i ( TAG , "temp = "+ temp);
+        Log.i ( TAG , "pressure = "+ pressure);
+        Log.i ( TAG , "windSpeed = "+ windSpeed);
 
         cityTextView = findViewById(R.id.cityTextView);
         cityTextView.setText(cityName);
+
+        tempTextView =findViewById(R.id.tempTextView2);
+        Log.i ( TAG , "11 = "+ tempTextView);
+        tempTextView.setText(String.valueOf(temp));
+
+        pressTextView = findViewById(R.id.pressureTextView2);
+        Log.i ( TAG , "22  = "+ pressTextView);
+        Log.i ( TAG , "pressTextView = "+ pressTextView);
+        pressTextView.setText(String.valueOf(pressure));
+
+
+        windTextView = findViewById(R.id.windSpeedTextView2);
+        Log.i ( TAG , "33 = "+ windTextView);
+        windTextView.setText(String.valueOf(windSpeed));
 
         findViewById(R.id.changeLocation).setOnClickListener(new View.OnClickListener() {
 
@@ -94,3 +127,11 @@ public class MainActivity extends AppCompatActivity implements Constants{
         Log.i(TAG, text);
     }
 }
+
+
+
+
+// Log.i ( TAG , "cityName = "+ cityName);
+//        Log.i ( TAG , "temp = "+ temp);
+ //                (TAG, "pressure:"+ pressure)
+//              (TAG, "wind speed:"+ windSpeed)

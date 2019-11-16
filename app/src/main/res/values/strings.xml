@@ -29,5 +29,12 @@
     <string name="newYork">New York</string>
     <string name="tokyo">Tokyo</string>
     <string name="telAviv">Tel Aviv</string>
+    <string name="today">Today :</string>
+    <string name="temp">Temp :</string>
+    <string name="pressure">Pressure :</string>
+    <string name="wind_speed_today">Wind speed :</string>
+    <string name="temptoday">temp today</string>
+    <string name="pressuretoday">pressure today</string>
+    <string name="wind_today">wind today</string>
 
 </resources>
