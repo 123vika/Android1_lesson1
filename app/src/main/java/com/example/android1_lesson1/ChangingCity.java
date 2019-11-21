@@ -11,17 +11,21 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.content.Intent;
 import java.util.ArrayList;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class ChangingCity extends AppCompatActivity implements Constants{
 
     private EditText searchLocation ;
     private static String CITY_NAME = "Search location1";
     private static final String TAG  = "ChangingCity";
-    String cityName ;
-    Intent intent;
-    int    temp = 5;
-    int pressure = 30;
-    int windSpeed = 50;
+
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter adapter;
+    private RecyclerView.LayoutManager layoutManager;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,39 +43,29 @@ public class ChangingCity extends AppCompatActivity implements Constants{
             }
         });
 
-        ListView listView = findViewById(R.id.listView);
-        ArrayList<String> posts = new ArrayList<>();
-        posts.add(getString(R.string.saintPetersburg));
-        posts.add(getString(R.string.moscow));
-        posts.add(getString(R.string.london));
-        posts.add(getString(R.string.paris));
-        posts.add(getString(R.string.dubai));
-        posts.add(getString(R.string.newYork));
-        posts.add(getString(R.string.tokyo));
-        posts.add(getString(R.string.telAviv));
+        ArrayList<RecyclerViewCityItem> recycleViewItems = new ArrayList<>();
+        recycleViewItems.add (new RecyclerViewCityItem(getResources().getString(R.string.saintPetersburg)));
+        recycleViewItems.add (new RecyclerViewCityItem(getResources().getString(R.string.moscow)));
+        recycleViewItems.add (new RecyclerViewCityItem(getResources().getString(R.string.london)));
+        recycleViewItems.add (new RecyclerViewCityItem(getResources().getString(R.string.paris)));
+        recycleViewItems.add (new RecyclerViewCityItem(getResources().getString(R.string.dubai)));
+        recycleViewItems.add (new RecyclerViewCityItem(getResources().getString(R.string.newYork)));
+        recycleViewItems.add (new RecyclerViewCityItem(getResources().getString(R.string.tokyo)));
+        recycleViewItems.add (new RecyclerViewCityItem(getResources().getString(R.string.telAviv)));
 
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, posts);
-        listView.setAdapter(arrayAdapter);
+      //  recycleViewItems.add (new RecyclerViewCityItem("beer-sheva"));
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+       // recycleViewItems.add (new RecyclerViewCityItem(getResources().getString(R.string.newYork)));
 
-                cityName = (String) listView.getItemAtPosition(position);
 
-                Log.i ( TAG , "cityName = "+ cityName);
 
-                 intent = new Intent(ChangingCity.this ,MainActivity.class);
+        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setHasFixedSize(true);
+        adapter = new CityAdapter(recycleViewItems,this);
+        layoutManager = new LinearLayoutManager(this);
 
-                 intent.putExtra(TEXT,cityName);
-                 intent.putExtra(TEMP,temp);
-                 intent.putExtra(PRESSURE,pressure);
-                 intent.putExtra(WIND_SPEED,windSpeed);
-
-                 startActivity(intent);
-            }
-        });
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(layoutManager);
     }
 
     private void restoreData (Bundle savedInstanceState) {
@@ -84,11 +78,7 @@ public class ChangingCity extends AppCompatActivity implements Constants{
         Log.i ( TAG , "jjjjj ");
     }
 
-    @Override
-    protected void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putString(CITY_NAME,searchLocation.getText().toString() );
-    }
+
 
     void onBack(){
 
@@ -101,6 +91,7 @@ public class ChangingCity extends AppCompatActivity implements Constants{
         // TODO : save state
         super.onBackPressed();
     }
+
 }
 
 // интарная ....
@@ -109,3 +100,41 @@ public class ChangingCity extends AppCompatActivity implements Constants{
 //     instance = new WeaterSettingsModel ();
 //        тоже самое
 //  instance =(instance ==null? new WeaterSettingsModel () : instance);
+
+
+
+//ListView listView = findViewById(R.id.listView);
+//        ArrayList<String> posts = new ArrayList<>();
+//        posts.add(getString(R.string.saintPetersburg));
+//        posts.add(getString(R.string.moscow));
+//        posts.add(getString(R.string.london));
+//        posts.add(getString(R.string.paris));
+//        posts.add(getString(R.string.dubai));
+//        posts.add(getString(R.string.newYork));
+//        posts.add(getString(R.string.tokyo));
+//        posts.add(getString(R.string.telAviv));
+//
+//        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,
+//                android.R.layout.simple_list_item_1, posts);
+//        listView.setAdapter(arrayAdapter);
+//
+//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//
+//                cityName = (String) listView.getItemAtPosition(position);
+//
+//                Log.i ( TAG , "cityName = "+ cityName);
+//
+//                 intent = new Intent(ChangingCity.this ,MainActivity.class);
+////
+////                 intent.putExtra(TEXT,cityName);
+////                 intent.putExtra(TEMP,temp);
+////                 intent.putExtra(PRESSURE,pressure);
+////                 intent.putExtra(WIND_SPEED,windSpeed);
+////
+////                 startActivity(intent);
+//            }
+//        });
+
+

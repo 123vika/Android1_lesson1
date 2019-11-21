@@ -36,5 +36,6 @@
     <string name="temptoday">temp today</string>
     <string name="pressuretoday">pressure today</string>
     <string name="wind_today">wind today</string>
+    <string name="recycler_city">Recycler city</string>
 
 </resources>
