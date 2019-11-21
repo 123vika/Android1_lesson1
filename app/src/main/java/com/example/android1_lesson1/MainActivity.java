@@ -24,6 +24,10 @@ public class MainActivity extends AppCompatActivity implements Constants{
     TextView pressTextView;
     TextView windTextView;
 
+    private RecyclerView weekDayView;
+    private RecyclerView.Adapter adapter;
+    private RecyclerView.LayoutManager layoutManager;
+
     String cityName;
     int temp;
     int pressure;
@@ -79,7 +83,23 @@ public class MainActivity extends AppCompatActivity implements Constants{
             }
         });
 
+        ArrayList<WeekDayItem> weekDayItems = new ArrayList<>();
+        weekDayItems.add (new WeekDayItem(getResources().getString(R.string.monday)));
+        weekDayItems.add (new WeekDayItem(getResources().getString(R.string.tuesday)));
+        weekDayItems.add (new WeekDayItem(getResources().getString(R.string.wednesday)));
+        weekDayItems.add (new WeekDayItem(getResources().getString(R.string.thursday)));
+        weekDayItems.add (new WeekDayItem(getResources().getString(R.string.friday)));
+        weekDayItems.add (new WeekDayItem(getResources().getString(R.string.saturday)));
+        weekDayItems.add (new WeekDayItem(getResources().getString(R.string.sunday)));
 
+
+        weekDayView = findViewById(R.id.weekDayRecView);
+        weekDayView.setHasFixedSize(true);
+        adapter = new WeekDayAdapter(weekDayItems,this);
+        layoutManager = new LinearLayoutManager(this);
+
+        weekDayView.setAdapter(adapter);
+        weekDayView.setLayoutManager(layoutManager);
 
     }
     void openChangingCity (){
