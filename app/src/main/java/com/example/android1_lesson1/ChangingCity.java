@@ -1,22 +1,33 @@
 package com.example.android1_lesson1;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.content.Intent;
+import android.widget.TextView;
+
 import java.util.ArrayList;
+import java.util.regex.Pattern;
+
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class ChangingCity extends AppCompatActivity implements Constants{
+import com.google.android.material.textfield.TextInputEditText;
 
-    private EditText searchLocation ;
+public class ChangingCity extends AppCompatActivity  implements Constants    {
+
+    private TextInputEditText inputCityName;
     private static String CITY_NAME = "Search location1";
     private static final String TAG  = "ChangingCity";
 
@@ -25,16 +36,11 @@ public class ChangingCity extends AppCompatActivity implements Constants{
     private RecyclerView.LayoutManager layoutManager;
 
 
-
-
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_changing_city);
-
-        searchLocation = findViewById(R.id.searchLocation);
-
-        restoreData(savedInstanceState);
 
         findViewById(R.id.backButton).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,6 +48,24 @@ public class ChangingCity extends AppCompatActivity implements Constants{
                 onBack();
             }
         });
+
+
+        Pattern patternCityName = Pattern.compile("^[-A-Za-z ]+$");
+        inputCityName = findViewById(R.id.input_city_name);
+        inputCityName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean hasFocus) {
+                if (hasFocus)
+                    return;
+                TextView textView = (TextView) view;
+                if (patternCityName.matcher(textView.getText().toString()).matches()) {
+                    ((TextView) view).setError(null);
+                } else {
+                    ((TextView) view).setError("This is not city");
+                }
+            }
+        });
+
 
         ArrayList<RecyclerViewCityItem> recycleViewItems = new ArrayList<>();
         recycleViewItems.add (new RecyclerViewCityItem(getResources().getString(R.string.saintPetersburg)));
@@ -53,11 +77,6 @@ public class ChangingCity extends AppCompatActivity implements Constants{
         recycleViewItems.add (new RecyclerViewCityItem(getResources().getString(R.string.tokyo)));
         recycleViewItems.add (new RecyclerViewCityItem(getResources().getString(R.string.telAviv)));
 
-      //  recycleViewItems.add (new RecyclerViewCityItem("beer-sheva"));
-
-       // recycleViewItems.add (new RecyclerViewCityItem(getResources().getString(R.string.newYork)));
-
-
 
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
@@ -66,18 +85,12 @@ public class ChangingCity extends AppCompatActivity implements Constants{
 
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(layoutManager);
+
+
+        DividerItemDecoration itemDecoration = new DividerItemDecoration(this, LinearLayout.VERTICAL);
+        itemDecoration.setDrawable(getDrawable(R.drawable.separator));
+        recyclerView.addItemDecoration(itemDecoration);
     }
-
-    private void restoreData (Bundle savedInstanceState) {
-        Log.i ( TAG , "on11 "+savedInstanceState);
-
-        if (savedInstanceState == null)
-            return;
-        searchLocation.setText(savedInstanceState.getString(CITY_NAME, "Search location!!"));
-
-        Log.i ( TAG , "jjjjj ");
-    }
-
 
 
     void onBack(){
