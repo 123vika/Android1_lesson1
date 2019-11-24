@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity implements Constants{
     TextView windTextView;
 
     private RecyclerView weekDayView;
+
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
 
@@ -84,13 +85,16 @@ public class MainActivity extends AppCompatActivity implements Constants{
         });
 
         ArrayList<WeekDayItem> weekDayItems = new ArrayList<>();
-        weekDayItems.add (new WeekDayItem(getResources().getString(R.string.monday)));
-        weekDayItems.add (new WeekDayItem(getResources().getString(R.string.tuesday)));
-        weekDayItems.add (new WeekDayItem(getResources().getString(R.string.wednesday)));
-        weekDayItems.add (new WeekDayItem(getResources().getString(R.string.thursday)));
-        weekDayItems.add (new WeekDayItem(getResources().getString(R.string.friday)));
-        weekDayItems.add (new WeekDayItem(getResources().getString(R.string.saturday)));
-        weekDayItems.add (new WeekDayItem(getResources().getString(R.string.sunday)));
+
+     //   weekDayItems.add (new WeekDayItem("mon",5));
+
+        weekDayItems.add (new WeekDayItem(getString(R.string.monday),5));
+        weekDayItems.add (new WeekDayItem(getString(R.string.tuesday),10));
+        weekDayItems.add (new WeekDayItem(getString(R.string.wednesday),12));
+        weekDayItems.add (new WeekDayItem(getString(R.string.thursday),9));
+        weekDayItems.add (new WeekDayItem(getString(R.string.friday),15));
+        weekDayItems.add (new WeekDayItem(getString(R.string.saturday),13));
+        weekDayItems.add (new WeekDayItem(getString(R.string.sunday),8));
 
 
         weekDayView = findViewById(R.id.weekDayRecView);

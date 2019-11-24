@@ -26,6 +26,8 @@ public class WeekDayAdapter extends RecyclerView.Adapter<WeekDayAdapter.Recycler
     Context context;
     Intent intent;
 
+
+
     public WeekDayAdapter(ArrayList<WeekDayItem> arrayList,Context context){
         this.arrayList = arrayList;
         this.context = context;
@@ -35,14 +37,17 @@ public class WeekDayAdapter extends RecyclerView.Adapter<WeekDayAdapter.Recycler
     public  class RecyclerViewViewHolder extends RecyclerView.ViewHolder
             implements View.OnClickListener {
 
-        public TextView recyclerCity;
+        public TextView weekDay;
+        public TextView weekTemp;
 
         public RecyclerViewViewHolder(@NonNull View itemView) {
             super(itemView);
 
             Log.d("adap", "mark5");
 
-            recyclerCity = itemView.findViewById(R.id.cityRecyclerTextView);
+            weekDay =  itemView.findViewById(R.id.weekDayTextView);
+            weekTemp = itemView.findViewById(R.id.weekTempTextView);
+
 
             itemView.setOnClickListener(this::onClick);
         }
@@ -54,27 +59,28 @@ public class WeekDayAdapter extends RecyclerView.Adapter<WeekDayAdapter.Recycler
             Log.d("adap", "mark6");
 
             int position = getAdapterPosition();
-            WeekDayItem recyclerViewCityItem = arrayList.get(position);
+            WeekDayItem weekDayItem = arrayList.get(position);
 
             // cityName = recyclerViewCityItem.getRecyclerCity();
 
-            Log.d("adap", "mark6.1 "+recyclerViewCityItem.getRecyclerCity());
+            Log.d("adap", "mark6.1 "+weekDayItem.getWeekDay());
+            Log.d("adap", "mark6.1.1 "+weekDayItem.getTemp());
 
 
 
 
-            intent = new Intent(context,MainActivity.class);
-            //  intent = new Intent(ChangingCity.this ,MainActivity.class);
-            //  intent.putExtra("city",RecyclerViewCityItem.getText());
-
-            // context.startActivity(intent);
-
-            intent.putExtra(TEXT,recyclerViewCityItem.getRecyclerCity());
-            intent.putExtra(TEMP,temp);
-            intent.putExtra(PRESSURE,pressure);
-            intent.putExtra(WIND_SPEED,windSpeed);
-
-            context.startActivity(intent);
+//            intent = new Intent(context,MainActivity.class);
+//                                  //  intent = new Intent(ChangingCity.this ,MainActivity.class);
+//                                  //  intent.putExtra("city",RecyclerViewCityItem.getText());
+//
+//                                  // context.startActivity(intent);
+//
+//            intent.putExtra(TEXT,recyclerViewCityItem.getRecyclerCity());
+//            intent.putExtra(TEMP,temp);
+//            intent.putExtra(PRESSURE,pressure);
+//            intent.putExtra(WIND_SPEED,windSpeed);
+//
+//            context.startActivity(intent);
         }
     }
 
@@ -82,8 +88,10 @@ public class WeekDayAdapter extends RecyclerView.Adapter<WeekDayAdapter.Recycler
     @Override
     public RecyclerViewViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate
-                (R.layout.city_recycler_view, viewGroup,false);
+                (R.layout.week_day_view, viewGroup,false);
+
         RecyclerViewViewHolder recyclerViewViewHolder = new RecyclerViewViewHolder(view);
+
         return recyclerViewViewHolder;
     }
 
@@ -92,10 +100,14 @@ public class WeekDayAdapter extends RecyclerView.Adapter<WeekDayAdapter.Recycler
     public void onBindViewHolder(@NonNull RecyclerViewViewHolder recyclerViewViewHolder, int i) {
         WeekDayItem recycleViewItem = arrayList.get(i);
 
-        Log.d("adap", "mark7");
+        Log.d("adap", "mark7"+recycleViewItem.getTemp());
+        Log.d("adap", "mark7"+recycleViewItem.getWeekDay());
 
-        recyclerViewViewHolder.recyclerCity.setText(recycleViewItem.getRecyclerCity());
-        recyclerViewViewHolder.recyclerCity.setText(recycleViewItem.getTemp());
+        Log.d("adap", "mark7"+recyclerViewViewHolder.weekDay);
+        Log.d("adap", "mark7"+recyclerViewViewHolder.weekTemp);
+
+        recyclerViewViewHolder.weekDay.setText(recycleViewItem.getWeekDay());
+        recyclerViewViewHolder.weekTemp.setText(recycleViewItem.getTemp()+"");
     }
 
     @Override

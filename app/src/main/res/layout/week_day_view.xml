@@ -4,32 +4,47 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@null"
     android:orientation="horizontal"
+    app:cardBackgroundColor="@android:color/transparent"
     app:cardCornerRadius="4dp">
 
-    <TextView
-        android:id="@+id/weekDayTextView"
-        android:layout_width="170dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="sans-serif"
-        android:padding="4dp"
-        android:text="@string/recycler_city"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="22sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/weekTempTextView" />
+        android:background="@null">
 
-    <TextView
-        android:id="@+id/weekTempTextView"
-        android:layout_width="170dp"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif"
-        android:padding="4dp"
-        android:text="@string/week_temp"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="22sp"
-        app:layout_constraintLeft_toRightOf="@id/weekDayTextView"
-        app:layout_constraintRight_toRightOf="parent" />
+
+        <TextView
+            android:id="@+id/weekDayTextView"
+            android:layout_width="165dp"
+            android:layout_height="39dp"
+            android:background="@null"
+            android:fontFamily="sans-serif"
+            android:padding="4dp"
+            android:text="@string/recycler_city"
+            android:textColor="@color/colorWhite"
+            android:textSize="22sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/weekTempTextView"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/weekTempTextView"
+            android:layout_width="124dp"
+            android:layout_height="41dp"
+            android:fontFamily="@font/archivo_black"
+            android:padding="4dp"
+            android:text="@string/week_temp"
+            android:textColor="#D81B60"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/weekDayTextView"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.cardview.widget.CardView>

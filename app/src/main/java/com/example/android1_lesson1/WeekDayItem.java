@@ -2,19 +2,21 @@ package com.example.android1_lesson1;
 
 public class WeekDayItem {
 
-    private String recyclerCity;
+    private String weekDay;
 
-    String temp;
+    int temp;
 
 
-    public WeekDayItem(String recyclerCity){
-        this.recyclerCity = recyclerCity ;
+    public WeekDayItem(String weekDay,int temp){
+        this.weekDay = weekDay ;
+        this.temp = temp;
     }
 
-    public String getRecyclerCity (){
-        return recyclerCity;
+    public String getWeekDay (){
+        return weekDay;
     }
-    public String getTemp (){ return temp;
+    public int getTemp (){
+        return temp;
     }
 
 }
