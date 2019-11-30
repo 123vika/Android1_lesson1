@@ -49,7 +49,7 @@ public class WeatherFragment extends Fragment implements WeatherProviderListener
     //    Log.i ( "hhhh" , "hhhh ");
         Log.d("hhhh", "updateW");
 
-        ((TextView)getActivity().findViewById(R.id.tempTextView2)).setText(Double.toString(model.getMain().getTemp()));
+       // ((TextView)getActivity().findViewById(R.id.tempTextView2)).setText(Double.toString(model.getMain().getTemp()));
    //     ((TextView)getActivity().findViewById(R.id.pressureTextView)).setText(Integer.toString(model.getMain().getPressure()));
     //    String temp = Double.toString(model.getMain().getTemp()- 273.0)+" C";
     //    ((TextView)getActivity().findViewById(R.id.tempMonTextView)).setText(temp);

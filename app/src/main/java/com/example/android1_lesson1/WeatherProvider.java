@@ -27,6 +27,8 @@ public class WeatherProvider {
     private Timer timer = null;
     private static WeatherProvider instanse = null;
 
+    private  final Object lockCityName = new Object();
+
     String cityName;
 
     WeatherFragment weatherFragment = new WeatherFragment();
@@ -57,6 +59,20 @@ public class WeatherProvider {
        // WeatherModel model = getWeather(cityName);
     }
 
+    public String getCity(){
+        synchronized (lockCityName) {
+            return this.cityName;
+        }
+    }
+
+    public void  setCityName(String cityName){
+        synchronized (lockCityName) {
+            this.cityName = cityName;
+           // WeatherModel model = getWeather(cityName);
+
+        }
+    }
+
     public void removeListener(WeatherProviderListener listener){
         if (listeners.contains(listener)){
             listeners.remove(listener);
@@ -76,7 +92,7 @@ public class WeatherProvider {
       //  this.cityName = cityName;
         Log.d("wwwww", cityName);
 
-        String uriString = "https://api.openweathermap.org/data/2.5/weather?q=" + this.cityName + "&appid=5caf9a8cffa7b650f3c63934598faea2";
+        String uriString = "https://api.openweathermap.org/data/2.5/weather?q=" + getCity() + "&appid=5caf9a8cffa7b650f3c63934598faea2";
         WeatherModel model = null;
         HttpURLConnection urlConnection = null;
 
@@ -121,9 +137,6 @@ public class WeatherProvider {
                 WeatherModel model = getWeather(cityName);
 
                 Log.d("wwwww", "temp "+model.getMain().getTemp());
-
-
-
 
 
                 if (model== null)
