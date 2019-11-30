@@ -45,9 +45,20 @@ public class MainActivity extends AppCompatActivity implements Constants,Weather
             Log.d("hhhh1", "temp "+model.getMain().getPressure());
             Log.d("hhhh1", "temp "+model.getWind().getSpeed());
 
-            String temp = Double.toString(model.getMain().getTemp()- 273.0)+" C";
 
+
+
+          //  String temp = String.format("%.2f",temp);
+
+            String temp = model.getMain().getTemp();
+            //String temp = model.getMain().getTemp()- 273.0)+" C";
             ((TextView) findViewById(R.id.tempTextView2)).setText(temp);
+
+            String press = Double.toString(model.getMain().getPressure());
+            ((TextView) findViewById(R.id.pressureTextView2)).setText(press);
+
+            String wind = Double.toString(model.getWind().getSpeed());
+            ((TextView) findViewById(R.id.windSpeedTextView2)).setText(wind);
 
            // ((TextView) findViewById(R.id.tempTextView)).setText(Double.toString(model.getMain().getTemp()));
             
@@ -59,7 +70,6 @@ public class MainActivity extends AppCompatActivity implements Constants,Weather
     int pressure;
     int windSpeed;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,8 +79,6 @@ public class MainActivity extends AppCompatActivity implements Constants,Weather
 
      //   weatherProvider.
      //   weatherProvider.addListener();
-
-
 
 
         if (getIntent().getExtras()!=null) {
@@ -84,9 +92,9 @@ public class MainActivity extends AppCompatActivity implements Constants,Weather
             // default value
             //
             cityName = "Moscow";
-            temp = 10;
-            pressure = 25;
-            windSpeed = 55;
+            temp = 0;
+            pressure = 0;
+            windSpeed = 0;
         }
         Log.i ( TAG , "cityName = "+ cityName);
         Log.i ( TAG , "temp = "+ temp);
@@ -111,10 +119,13 @@ public class MainActivity extends AppCompatActivity implements Constants,Weather
 
 
         Log.i ( TAG , "cityName call whether = "+ cityName);
+
+
+
         weatherProvider = new WeatherProvider(cityName);
         weatherProvider = WeatherProvider.getInstance(cityName);
         weatherProvider.addListener(weatherProviderListener);
-        weatherProvider.changeCity(cityName);
+        weatherProvider.setCityName(cityName);
 
      //   weatherProvider.addListener();
 
@@ -159,31 +170,31 @@ public class MainActivity extends AppCompatActivity implements Constants,Weather
     @Override
     protected void onStart() {
         super.onStart();
-        showLog("onStart");
+       // showLog("onStart");
     }
     @Override
     protected void onResume() {
         super.onResume();
-        showLog("onResume");
+       // showLog("onResume");
     }
     @Override
     protected void onPause() {
         super.onPause();
-        showLog("onPause");
+        //showLog("onPause");
     }
     @Override
     protected void onStop() {
         super.onStop();
-        showLog("onStop");
+       // showLog("onStop");
     }
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        showLog("onDestroy");
+       // showLog("onDestroy");
     }
     private void showLog(String text) {
         Log.d("Start", text);
-        Toast.makeText(getApplicationContext(), text, Toast.LENGTH_LONG).show();
+       // Toast.makeText(getApplicationContext(), text, Toast.LENGTH_LONG).show();
         Log.i(TAG, text);
     }
     @Override
@@ -192,7 +203,7 @@ public class MainActivity extends AppCompatActivity implements Constants,Weather
         //    Log.i ( "hhhh" , "hhhh ");
         Log.d("hhhh", "updateW");
 
-        String temp = Double.toString(model.getMain().getTemp()- 273.0)+" C";
+      //  String temp = Double.toString(model.getMain().getTemp()- 273.0)+" C";
 
         ((TextView) findViewById(R.id.tempTextView)).setText(temp);
 

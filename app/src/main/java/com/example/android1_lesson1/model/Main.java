@@ -1,5 +1,7 @@
 package com.example.android1_lesson1.model;
 
+import android.util.Log;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -8,6 +10,7 @@ public class Main {
     @SerializedName("temp")
     @Expose
     private Double temp;
+
     @SerializedName("pressure")
     @Expose
     private Integer pressure;
@@ -21,12 +24,20 @@ public class Main {
     @Expose
     private Double tempMax;
 
-    public Double getTemp() {
-        return temp;
+    public String getTemp() {
+
+
+        double temp1 = temp-273;
+        Log.d("hhhh", "temp1"+temp1);
+        String temps = String.format("%.1f",temp1);
+
+        return temps ;
     }
 
-    public void setTemp(Double temp) {
+    public void setTemp(double temp) {
+
         this.temp = temp;
+
     }
 
     public Integer getPressure() {
