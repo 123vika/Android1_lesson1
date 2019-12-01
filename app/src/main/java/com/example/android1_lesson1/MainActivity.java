@@ -2,6 +2,9 @@ package com.example.android1_lesson1;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,10 +24,15 @@ public class MainActivity extends AppCompatActivity implements Constants{
     TextView pressTextView;
     TextView windTextView;
 
+    private RecyclerView weekDayView;
+    private RecyclerView.Adapter adapter;
+    private RecyclerView.LayoutManager layoutManager;
+
     String cityName;
     int temp;
     int pressure;
     int windSpeed;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,18 +47,14 @@ public class MainActivity extends AppCompatActivity implements Constants{
             windSpeed = getIntent().getExtras().getInt(WIND_SPEED);
         }
         else {
-
             //
             // default value
             //
-
             cityName = "Moscow";
             temp = 10;
             pressure = 25;
             windSpeed = 55;
-
         }
-
         Log.i ( TAG , "cityName = "+ cityName);
         Log.i ( TAG , "temp = "+ temp);
         Log.i ( TAG , "pressure = "+ pressure);
@@ -68,18 +72,35 @@ public class MainActivity extends AppCompatActivity implements Constants{
         Log.i ( TAG , "pressTextView = "+ pressTextView);
         pressTextView.setText(String.valueOf(pressure));
 
-
         windTextView = findViewById(R.id.windSpeedTextView2);
         Log.i ( TAG , "33 = "+ windTextView);
         windTextView.setText(String.valueOf(windSpeed));
 
         findViewById(R.id.changeLocation).setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View view) {
                 openChangingCity();
             }
         });
+
+        ArrayList<WeekDayItem> weekDayItems = new ArrayList<>();
+        weekDayItems.add (new WeekDayItem(getResources().getString(R.string.monday)));
+        weekDayItems.add (new WeekDayItem(getResources().getString(R.string.tuesday)));
+        weekDayItems.add (new WeekDayItem(getResources().getString(R.string.wednesday)));
+        weekDayItems.add (new WeekDayItem(getResources().getString(R.string.thursday)));
+        weekDayItems.add (new WeekDayItem(getResources().getString(R.string.friday)));
+        weekDayItems.add (new WeekDayItem(getResources().getString(R.string.saturday)));
+        weekDayItems.add (new WeekDayItem(getResources().getString(R.string.sunday)));
+
+
+        weekDayView = findViewById(R.id.weekDayRecView);
+        weekDayView.setHasFixedSize(true);
+        adapter = new WeekDayAdapter(weekDayItems,this);
+        layoutManager = new LinearLayoutManager(this);
+
+        weekDayView.setAdapter(adapter);
+        weekDayView.setLayoutManager(layoutManager);
+
     }
     void openChangingCity (){
         startActivity(new Intent(this,ChangingCity.class));
@@ -90,48 +111,34 @@ public class MainActivity extends AppCompatActivity implements Constants{
         Intent city = new Intent(MainActivity.this, ChangingCity.class);
         startActivity(city);
     }
-
     @Override
     protected void onStart() {
         super.onStart();
         showLog("onStart");
     }
-
     @Override
     protected void onResume() {
         super.onResume();
         showLog("onResume");
     }
-
     @Override
     protected void onPause() {
         super.onPause();
         showLog("onPause");
     }
-
     @Override
     protected void onStop() {
         super.onStop();
         showLog("onStop");
     }
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
         showLog("onDestroy");
     }
-
     private void showLog(String text) {
         Log.d("Start", text);
         Toast.makeText(getApplicationContext(), text, Toast.LENGTH_LONG).show();
         Log.i(TAG, text);
     }
 }
-
-
-
-
-// Log.i ( TAG , "cityName = "+ cityName);
-//        Log.i ( TAG , "temp = "+ temp);
- //                (TAG, "pressure:"+ pressure)
-//              (TAG, "wind speed:"+ windSpeed)
