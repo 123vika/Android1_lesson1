@@ -86,7 +86,6 @@ public class ChangingCity extends AppCompatActivity  implements Constants    {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(layoutManager);
 
-
         DividerItemDecoration itemDecoration = new DividerItemDecoration(this, LinearLayout.VERTICAL);
         itemDecoration.setDrawable(getDrawable(R.drawable.separator));
         recyclerView.addItemDecoration(itemDecoration);

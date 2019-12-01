@@ -15,8 +15,10 @@ import android.widget.ListView;
 import android.widget.Toast;
 import android.widget.TextView;
 import java.util.ArrayList;
+import com.example.android1_lesson1.model.WeatherModel;
 
-public class MainActivity extends AppCompatActivity implements Constants{
+
+public class MainActivity extends AppCompatActivity implements Constants,WeatherProviderListener{
 
     private static final String TAG  = "MainActivity";
     TextView cityTextView;
@@ -24,10 +26,33 @@ public class MainActivity extends AppCompatActivity implements Constants{
     TextView pressTextView;
     TextView windTextView;
 
+    WeatherProvider weatherProvider;
+
     private RecyclerView weekDayView;
 
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
+
+    WeatherProviderListener weatherProviderListener = new WeatherProviderListener() {
+        @Override
+        public void updateWeather(WeatherModel model) {
+
+
+            Log.d("hhhh1", "updateW");
+            Log.d("hhhh1", "temp "+model.getMain().getTemp());
+
+
+            Log.d("hhhh1", "temp "+model.getMain().getPressure());
+            Log.d("hhhh1", "temp "+model.getWind().getSpeed());
+
+            String temp = Double.toString(model.getMain().getTemp()- 273.0)+" C";
+
+            ((TextView) findViewById(R.id.tempTextView2)).setText(temp);
+
+           // ((TextView) findViewById(R.id.tempTextView)).setText(Double.toString(model.getMain().getTemp()));
+            
+        }
+    };
 
     String cityName;
     int temp;
@@ -40,6 +65,13 @@ public class MainActivity extends AppCompatActivity implements Constants{
         super.onCreate(savedInstanceState);
         showLog("onCreate");
         setContentView(R.layout.activity_main);
+
+
+     //   weatherProvider.
+     //   weatherProvider.addListener();
+
+
+
 
         if (getIntent().getExtras()!=null) {
             cityName = getIntent().getExtras().getString(TEXT); // получить данные из Intent
@@ -76,6 +108,15 @@ public class MainActivity extends AppCompatActivity implements Constants{
         windTextView = findViewById(R.id.windSpeedTextView2);
         Log.i ( TAG , "33 = "+ windTextView);
         windTextView.setText(String.valueOf(windSpeed));
+
+
+        Log.i ( TAG , "cityName call whether = "+ cityName);
+        weatherProvider = new WeatherProvider(cityName);
+        weatherProvider = WeatherProvider.getInstance(cityName);
+        weatherProvider.addListener(weatherProviderListener);
+        weatherProvider.changeCity(cityName);
+
+     //   weatherProvider.addListener();
 
         findViewById(R.id.changeLocation).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -145,4 +186,19 @@ public class MainActivity extends AppCompatActivity implements Constants{
         Toast.makeText(getApplicationContext(), text, Toast.LENGTH_LONG).show();
         Log.i(TAG, text);
     }
+    @Override
+    public void updateWeather(WeatherModel model){
+
+        //    Log.i ( "hhhh" , "hhhh ");
+        Log.d("hhhh", "updateW");
+
+        String temp = Double.toString(model.getMain().getTemp()- 273.0)+" C";
+
+        ((TextView) findViewById(R.id.tempTextView)).setText(temp);
+
+      //  ((TextView) findViewById(R.id.tempTextView)).setText(Double.toString(model.getMain().getTemp()));
+        //     ((TextView)getActivity().findViewById(R.id.pressureTextView)).setText(Integer.toString(model.getMain().getPressure()));
+        //
+        //
+}
 }
