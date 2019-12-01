@@ -43,7 +43,7 @@
         android:text="@string/_15_00"
         android:textColor="@color/colorWhite"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintBottom_toTopOf="@+id/changeLocationbutton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintRight_toLeftOf="@id/dateEditText"
         app:layout_constraintStart_toEndOf="@+id/dateEditText"
@@ -64,7 +64,7 @@
         android:text="@string/_1_11_19"
         android:textColor="@color/colorWhite"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintBottom_toTopOf="@+id/cityTextView"
         app:layout_constraintEnd_toStartOf="@+id/timeEditText"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -87,7 +87,7 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintStart_toEndOf="@+id/cityTextView"
         app:layout_constraintTop_toBottomOf="@+id/timeEditText" />
 
 
@@ -103,7 +103,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
+        app:layout_constraintTop_toBottomOf="@+id/cityTextView">
 
         <EditText
             android:id="@+id/monTextView"
@@ -168,7 +168,88 @@
             android:textColor="@color/colorWhite"
             android:textSize="22sp" />
     </LinearLayout>
+
+
     <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="392dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+        <EditText
+            android:id="@+id/tempMonTextView"
+            android:layout_width="58dp"
+            android:layout_height="70dp"
+            android:inputType="numberSigned"
+            android:text=" "
+            android:textColor="@color/colorWhite"
+            android:textSize="22sp" />
+
+        <EditText
+            android:id="@+id/tempTueTextView"
+            android:layout_width="58dp"
+            android:layout_height="70dp"
+            android:inputType="numberSigned"
+            android:text=" "
+            android:textColor="@color/colorWhite"
+            android:textSize="22sp" />
+
+        <EditText
+            android:id="@+id/tempWedTextView"
+            android:layout_width="58dp"
+            android:layout_height="70dp"
+            android:inputType="numberSigned"
+            android:text=" "
+            android:textColor="@color/colorWhite"
+            android:textSize="22sp" />
+
+        <EditText
+            android:id="@+id/tempThuTextView"
+            android:layout_width="58dp"
+            android:layout_height="70dp"
+            android:inputType="numberSigned"
+            android:text=" "
+            android:textColor="@color/colorWhite"
+            android:textSize="22sp" />
+
+        <EditText
+            android:id="@+id/tempFriTextView"
+            android:layout_width="58dp"
+            android:layout_height="70dp"
+            android:inputType="numberSigned"
+            android:text=" "
+            android:textColor="@color/colorWhite"
+            android:textSize="22sp" />
+
+        <EditText
+            android:id="@+id/tempSatTextView"
+            android:layout_width="58dp"
+            android:layout_height="70dp"
+            android:inputType="numberSigned"
+            android:text=" "
+            android:textColor="@color/colorWhite"
+            android:textSize="22sp" />
+
+        <EditText
+            android:id="@+id/tempSunTextView"
+            android:layout_width="58dp"
+            android:layout_height="70dp"
+            android:inputType="numberSigned"
+            android:text=" "
+            android:textColor="@color/colorWhite"
+            android:textSize="22sp" />
+    </LinearLayout>
+
+
+    <!--  <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="405dp"
         android:layout_height="77dp"
@@ -235,7 +316,7 @@
             android:layout_height="70dp"
             app:srcCompat="@drawable/umbrella"
             tools:ignore="VectorDrawableCompat"/>
-    </LinearLayout>
+    </LinearLayout>    -->
     <LinearLayout
         android:layout_width="395dp"
         android:layout_height="366dp"

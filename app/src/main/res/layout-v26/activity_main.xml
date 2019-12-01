@@ -85,7 +85,7 @@
                 android:layout_marginTop="2dp"
                 android:layout_marginEnd="50dp"
                 android:layout_marginBottom="2dp"
-                android:background="@color/cardview_shadow_end_color"
+                android:background="#3BEA8C00"
                 android:fontFamily="sans-serif"
                 android:onClick="changeCity"
                 android:text="@string/change_location"
@@ -152,16 +152,3 @@
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!--  <fragment
-          android:id="@+id/weekFragment"
-          android:name="com.example.android1_lesson1.WeekWeather"
-          android:layout_width="385dp"
-          android:layout_height="400dp"
-          android:layout_marginLeft="10dp"
-          android:layout_marginTop="4dp"
-          android:layout_marginRight="10dp"
-          app:layout_constraintBottom_toBottomOf="parent"
-          app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toBottomOf="@+id/weatherIconsFragment"
-          tools:layout="@layout/week_weather" />    -->
