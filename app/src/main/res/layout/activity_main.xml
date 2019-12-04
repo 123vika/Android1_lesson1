@@ -8,8 +8,6 @@
     tools:context=".MainActivity">
 
 
-
-
     <TextView
         android:id="@+id/cityTextView"
         android:layout_width="116dp"

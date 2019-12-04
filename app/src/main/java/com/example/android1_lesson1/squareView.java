@@ -38,9 +38,9 @@ public class squareView extends View {
     }
 
     void init(int color, int rectangleH , int rectangleW){
-        paint = new Paint();   // создаём чем будем рисовать
-        paint.setColor(color);   // определяем цвет
-        paint.setStyle(Paint.Style.FILL); // определяем стиль. У нас заливка.
+        paint = new Paint();
+        paint.setColor(color);
+        paint.setStyle(Paint.Style.FILL);
         paint.setStrokeWidth(5);
         this.rectangleH = rectangleH;
         this.rectangleW = rectangleW;

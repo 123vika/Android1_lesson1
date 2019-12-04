@@ -199,7 +199,6 @@ public class MainActivity extends AppCompatActivity implements Constants,Weather
     @Override
     protected void onPause(){
             if (listener != null) {
-                //убираем лисенер
                 manager.unregisterListener(listener);
                 listener = null;
             }
