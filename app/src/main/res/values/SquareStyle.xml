@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="squareView">
+        <attr name="cv_rectangleH" format="integer"/>
+        <attr name="cv_rectangleW" format="integer"/>
+        <attr name="cv_color" format="color"/>
+    </declare-styleable>
+</resources>
