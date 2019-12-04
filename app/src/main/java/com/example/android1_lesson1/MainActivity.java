@@ -6,6 +6,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,6 +19,8 @@ import android.widget.ListView;
 import android.widget.Toast;
 import android.widget.TextView;
 import java.util.ArrayList;
+import java.util.List;
+
 import com.example.android1_lesson1.model.WeatherModel;
 
 
@@ -25,6 +31,9 @@ public class MainActivity extends AppCompatActivity implements Constants,Weather
     TextView tempTextView;
     TextView pressTextView;
     TextView windTextView;
+
+    SensorManager manager;
+    SensorEventListener listener;
 
     WeatherProvider weatherProvider;
 
@@ -37,21 +46,13 @@ public class MainActivity extends AppCompatActivity implements Constants,Weather
         @Override
         public void updateWeather(WeatherModel model) {
 
-
             Log.d("hhhh1", "updateW");
             Log.d("hhhh1", "temp "+model.getMain().getTemp());
-
 
             Log.d("hhhh1", "temp "+model.getMain().getPressure());
             Log.d("hhhh1", "temp "+model.getWind().getSpeed());
 
-
-
-
-          //  String temp = String.format("%.2f",temp);
-
             String temp = model.getMain().getTemp();
-            //String temp = model.getMain().getTemp()- 273.0)+" C";
             ((TextView) findViewById(R.id.tempTextView2)).setText(temp);
 
             String press = Double.toString(model.getMain().getPressure());
@@ -59,9 +60,6 @@ public class MainActivity extends AppCompatActivity implements Constants,Weather
 
             String wind = Double.toString(model.getWind().getSpeed());
             ((TextView) findViewById(R.id.windSpeedTextView2)).setText(wind);
-
-           // ((TextView) findViewById(R.id.tempTextView)).setText(Double.toString(model.getMain().getTemp()));
-            
         }
     };
 
@@ -75,11 +73,6 @@ public class MainActivity extends AppCompatActivity implements Constants,Weather
         super.onCreate(savedInstanceState);
         showLog("onCreate");
         setContentView(R.layout.activity_main);
-
-
-     //   weatherProvider.
-     //   weatherProvider.addListener();
-
 
         if (getIntent().getExtras()!=null) {
             cityName = getIntent().getExtras().getString(TEXT); // получить данные из Intent
@@ -117,17 +110,12 @@ public class MainActivity extends AppCompatActivity implements Constants,Weather
         Log.i ( TAG , "33 = "+ windTextView);
         windTextView.setText(String.valueOf(windSpeed));
 
-
         Log.i ( TAG , "cityName call whether = "+ cityName);
-
-
 
         weatherProvider = new WeatherProvider(cityName);
         weatherProvider = WeatherProvider.getInstance(cityName);
         weatherProvider.addListener(weatherProviderListener);
         weatherProvider.setCityName(cityName);
-
-     //   weatherProvider.addListener();
 
         findViewById(R.id.changeLocation).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -138,8 +126,6 @@ public class MainActivity extends AppCompatActivity implements Constants,Weather
 
         ArrayList<WeekDayItem> weekDayItems = new ArrayList<>();
 
-     //   weekDayItems.add (new WeekDayItem("mon",5));
-
         weekDayItems.add (new WeekDayItem(getString(R.string.monday),5));
         weekDayItems.add (new WeekDayItem(getString(R.string.tuesday),10));
         weekDayItems.add (new WeekDayItem(getString(R.string.wednesday),12));
@@ -148,7 +134,6 @@ public class MainActivity extends AppCompatActivity implements Constants,Weather
         weekDayItems.add (new WeekDayItem(getString(R.string.saturday),13));
         weekDayItems.add (new WeekDayItem(getString(R.string.sunday),8));
 
-
         weekDayView = findViewById(R.id.weekDayRecView);
         weekDayView.setHasFixedSize(true);
         adapter = new WeekDayAdapter(weekDayItems,this);
@@ -156,8 +141,8 @@ public class MainActivity extends AppCompatActivity implements Constants,Weather
 
         weekDayView.setAdapter(adapter);
         weekDayView.setLayoutManager(layoutManager);
-
     }
+
     void openChangingCity (){
         startActivity(new Intent(this,ChangingCity.class));
     }
@@ -170,15 +155,54 @@ public class MainActivity extends AppCompatActivity implements Constants,Weather
     @Override
     protected void onStart() {
         super.onStart();
-       // showLog("onStart");
     }
     @Override
     protected void onResume() {
         super.onResume();
-       // showLog("onResume");
+        manager = (SensorManager) getSystemService(SENSOR_SERVICE);
+
+        Sensor sensorTemp = manager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE);
+        Sensor sensorHum = manager.getDefaultSensor(Sensor.TYPE_RELATIVE_HUMIDITY);
+
+        if ((sensorTemp==null)&&(sensorHum== null))
+            return;
+
+
+      //  if (sensorHum== null)
+      //      return;
+        listener = new SensorEventListener() {
+            @Override
+
+            public void onSensorChanged(SensorEvent sensorEvent) {
+
+                switch (sensorEvent.sensor.getType()){
+                    case Sensor.TYPE_AMBIENT_TEMPERATURE:
+                        Log.i("SENSORS", "TEMP= " + sensorEvent.values[0]);
+                        break;
+
+                    case Sensor.TYPE_RELATIVE_HUMIDITY:
+                        Log.i("SENSORS", "HUM= " + sensorEvent.values[0]);
+                        break;
+
+                }
+
+            }
+
+            @Override
+            public void onAccuracyChanged(Sensor sensor, int i) {
+            }
+        };
+        manager.registerListener(listener,sensorTemp, 1000);
+        manager.registerListener(listener,sensorHum, 1000);
     }
+
     @Override
-    protected void onPause() {
+    protected void onPause(){
+            if (listener != null) {
+                //убираем лисенер
+                manager.unregisterListener(listener);
+                listener = null;
+            }
         super.onPause();
         //showLog("onPause");
     }
@@ -203,13 +227,6 @@ public class MainActivity extends AppCompatActivity implements Constants,Weather
         //    Log.i ( "hhhh" , "hhhh ");
         Log.d("hhhh", "updateW");
 
-      //  String temp = Double.toString(model.getMain().getTemp()- 273.0)+" C";
-
         ((TextView) findViewById(R.id.tempTextView)).setText(temp);
-
-      //  ((TextView) findViewById(R.id.tempTextView)).setText(Double.toString(model.getMain().getTemp()));
-        //     ((TextView)getActivity().findViewById(R.id.pressureTextView)).setText(Integer.toString(model.getMain().getPressure()));
-        //
-        //
-}
+    }
 }
