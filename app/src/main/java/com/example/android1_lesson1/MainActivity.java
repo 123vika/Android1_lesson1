@@ -10,21 +10,34 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 import android.widget.TextView;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.example.android1_lesson1.model.WeatherModel;
 
 
 public class MainActivity extends AppCompatActivity implements Constants,WeatherProviderListener{
+
+    private String url = "https://google.com";
 
     private static final String TAG  = "MainActivity";
     TextView cityTextView;
@@ -124,23 +137,23 @@ public class MainActivity extends AppCompatActivity implements Constants,Weather
             }
         });
 
-        ArrayList<WeekDayItem> weekDayItems = new ArrayList<>();
-
-        weekDayItems.add (new WeekDayItem(getString(R.string.monday),5));
-        weekDayItems.add (new WeekDayItem(getString(R.string.tuesday),10));
-        weekDayItems.add (new WeekDayItem(getString(R.string.wednesday),12));
-        weekDayItems.add (new WeekDayItem(getString(R.string.thursday),9));
-        weekDayItems.add (new WeekDayItem(getString(R.string.friday),15));
-        weekDayItems.add (new WeekDayItem(getString(R.string.saturday),13));
-        weekDayItems.add (new WeekDayItem(getString(R.string.sunday),8));
-
-        weekDayView = findViewById(R.id.weekDayRecView);
-        weekDayView.setHasFixedSize(true);
-        adapter = new WeekDayAdapter(weekDayItems,this);
-        layoutManager = new LinearLayoutManager(this);
-
-        weekDayView.setAdapter(adapter);
-        weekDayView.setLayoutManager(layoutManager);
+//        ArrayList<WeekDayItem> weekDayItems = new ArrayList<>();
+//
+//        weekDayItems.add (new WeekDayItem(getString(R.string.monday),5));
+//        weekDayItems.add (new WeekDayItem(getString(R.string.tuesday),10));
+//        weekDayItems.add (new WeekDayItem(getString(R.string.wednesday),12));
+//        weekDayItems.add (new WeekDayItem(getString(R.string.thursday),9));
+//        weekDayItems.add (new WeekDayItem(getString(R.string.friday),15));
+//        weekDayItems.add (new WeekDayItem(getString(R.string.saturday),13));
+//        weekDayItems.add (new WeekDayItem(getString(R.string.sunday),8));
+//
+//        weekDayView = findViewById(R.id.weekDayRecView);
+//        weekDayView.setHasFixedSize(true);
+//        adapter = new WeekDayAdapter(weekDayItems,this);
+//        layoutManager = new LinearLayoutManager(this);
+//
+//        weekDayView.setAdapter(adapter);
+//        weekDayView.setLayoutManager(layoutManager);
     }
 
     void openChangingCity (){
@@ -159,6 +172,7 @@ public class MainActivity extends AppCompatActivity implements Constants,Weather
     @Override
     protected void onResume() {
         super.onResume();
+        loadPage();
         manager = (SensorManager) getSystemService(SENSOR_SERVICE);
 
         Sensor sensorTemp = manager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE);
@@ -194,6 +208,45 @@ public class MainActivity extends AppCompatActivity implements Constants,Weather
         };
         manager.registerListener(listener,sensorTemp, 1000);
         manager.registerListener(listener,sensorHum, 1000);
+    }
+
+    private void loadPage() {
+        new AsyncTask<String, Integer, String>() {   // AsyncTask < String, Integer, String> task = new AsyncTask<String, Integer, String>() {
+            @Override
+            protected String doInBackground(String... strings) {
+                try {
+                    Log.i("THREAD", Thread.currentThread().getName());  // узнаём в каком мы потоке
+                    URL uri = new URL(url);
+                    HttpURLConnection connection = (HttpURLConnection) uri.openConnection();
+                    connection.setRequestMethod("GET");
+                    connection.setConnectTimeout(10000);
+                    connection.connect();
+                    BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+
+                    if (Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                        return in.lines().collect(Collectors.joining("\n"));
+                    }
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+
+            @Override
+            protected void onProgressUpdate(Integer... values) {
+                super.onProgressUpdate(values);
+            }
+
+            @Override
+            protected void onPostExecute(String result) {
+                if (result != null) {
+                    ((WebView) findViewById(R.id.page)).loadData(result, "text/html; charset=utf-8", "itf-8");
+                }
+                super.onPostExecute(result);
+            }
+        }.execute(url);
     }
 
     @Override
