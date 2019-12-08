@@ -15,7 +15,7 @@ import androidx.annotation.Nullable;
 public class squareView extends View {
 
     public static final int DEF_COLOR = Color.BLUE;
-    public static final int DEF_RECTANGLE_H = 50;
+    public static final int DEF_RECTANGLE_H = 400;
     public static final int DEF_RECTANGLE_W = 50;
 
     Paint paint;
@@ -80,6 +80,6 @@ public class squareView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
       //  canvas.drawCircle(50,50,50,paint);
-        canvas.drawRect(200, 200, 0, 0, paint);
+        canvas.drawRect(200, 600, 0, 0, paint);
     }
 }

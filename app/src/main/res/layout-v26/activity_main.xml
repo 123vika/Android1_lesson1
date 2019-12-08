@@ -8,14 +8,40 @@
     android:background="@drawable/weather"
     tools:context=".MainActivity">
 
-    <ScrollView
+    <WebView
+        android:id="@+id/page"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="200dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@null"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/page"
+        app:layout_constraintVertical_bias="0.0">
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -24,6 +50,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
+
 
             <TextView
                 android:id="@+id/dateTextView"
@@ -64,7 +91,7 @@
                 android:id="@+id/cityTextView"
                 android:layout_width="200dp"
                 android:layout_height="40dp"
-                android:layout_marginStart="40dp"
+                android:layout_marginStart="70dp"
                 android:layout_marginTop="2dp"
                 android:layout_marginBottom="2dp"
                 android:fontFamily="sans-serif"
@@ -80,7 +107,8 @@
                 android:id="@+id/changeLocation"
                 android:layout_width="180dp"
                 android:layout_height="40dp"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="50dp"
                 android:layout_marginTop="2dp"
                 android:layout_marginEnd="50dp"
                 android:layout_marginBottom="2dp"
@@ -94,38 +122,60 @@
                 app:layout_constraintBottom_toTopOf="@+id/weekTemp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/cityTextView"
-                app:layout_constraintTop_toBottomOf="@+id/timeTextView" />
+                app:layout_constraintTop_toBottomOf="@+id/timeTextView"
+                tools:ignore="RtlHardcoded" />
 
             <fragment
                 android:id="@+id/weekTemp"
                 android:name="com.example.android1_lesson1.WeekTemp"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="4dp"
-                app:layout_constraintBottom_toTopOf="@+id/weatherIconsFragment"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toTopOf="@+id/squareView"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/changeLocation"
+                app:layout_constraintTop_toBottomOf="parent"
                 tools:layout="@layout/week_temp" />
 
-            <fragment
-                android:id="@+id/weatherIconsFragment"
-                android:name="com.example.android1_lesson1.WeatherIcons"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="4dp"
-                app:layout_constraintBottom_toTopOf="@+id/weekDayRecView"
+
+
+            <com.example.android1_lesson1.squareView
+                android:id="@+id/squareView"
+                android:layout_width="400dp"
+                android:layout_height="45dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:visibility="visible"
+                app:cv_color="#00FF00"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/weekTemp"
-                tools:layout="@layout/weather_icons" />
+                tools:visibility="visible" />
 
-            <androidx.recyclerview.widget.RecyclerView
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+<!--
+ <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/weekDayRecView"
                 android:layout_width="390dp"
                 android:layout_height="290dp"
@@ -145,10 +195,24 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/weatherIconsFragment" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </ScrollView>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+<fragment
+                android:id="@+id/weatherIconsFragment"
+                android:name="com.example.android1_lesson1.WeatherIcons"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/weekTemp"
+                tools:layout="@layout/weather_icons" />
+-->
 
 
