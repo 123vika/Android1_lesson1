@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -86,26 +87,33 @@ public class MainActivity extends AppCompatActivity implements Constants,Weather
         super.onCreate(savedInstanceState);
         showLog("onCreate");
         setContentView(R.layout.activity_main);
+        SharedPreferences preferences = getPreferences(MODE_PRIVATE);
+
 
         if (getIntent().getExtras()!=null) {
             cityName = getIntent().getExtras().getString(TEXT); // получить данные из Intent
             temp     = getIntent().getExtras().getInt(TEMP);
             pressure = getIntent().getExtras().getInt(PRESSURE);
             windSpeed = getIntent().getExtras().getInt(WIND_SPEED);
+            preferences.edit().putString("city",cityName).apply();
         }
         else {
+            cityName =preferences.getString("city","Moscow");
+            Log.i("SharedPreference",cityName);
             //
             // default value
             //
-            cityName = "Moscow";
-            temp = 0;
-            pressure = 0;
-            windSpeed = 0;
+//            cityName = "Moscow";
+//            temp = 0;
+//            pressure = 0;
+//            windSpeed = 0;
         }
         Log.i ( TAG , "cityName = "+ cityName);
         Log.i ( TAG , "temp = "+ temp);
         Log.i ( TAG , "pressure = "+ pressure);
         Log.i ( TAG , "windSpeed = "+ windSpeed);
+
+
 
         cityTextView = findViewById(R.id.cityTextView);
         cityTextView.setText(cityName);
