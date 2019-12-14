@@ -7,6 +7,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -19,6 +23,7 @@ import android.view.View;
 import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 import android.widget.TextView;
@@ -34,6 +39,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.example.android1_lesson1.model.WeatherModel;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Transformation;
 
 
 public class MainActivity extends AppCompatActivity implements Constants,WeatherProviderListener{
@@ -89,13 +96,12 @@ public class MainActivity extends AppCompatActivity implements Constants,Weather
         setContentView(R.layout.activity_main);
         SharedPreferences preferences = getPreferences(MODE_PRIVATE);
 
-
         if (getIntent().getExtras()!=null) {
             cityName = getIntent().getExtras().getString(TEXT); // получить данные из Intent
             temp     = getIntent().getExtras().getInt(TEMP);
             pressure = getIntent().getExtras().getInt(PRESSURE);
             windSpeed = getIntent().getExtras().getInt(WIND_SPEED);
-            preferences.edit().putString("city",cityName).apply();
+            preferences.edit().putString("city",cityName).commit();
         }
         else {
             cityName =preferences.getString("city","Moscow");
@@ -136,7 +142,11 @@ public class MainActivity extends AppCompatActivity implements Constants,Weather
         weatherProvider = new WeatherProvider(cityName);
         weatherProvider = WeatherProvider.getInstance(cityName);
         weatherProvider.addListener(weatherProviderListener);
-        weatherProvider.setCityName(cityName);
+        try {
+            weatherProvider.setCityName(cityName);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         findViewById(R.id.changeLocation).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -144,6 +154,33 @@ public class MainActivity extends AppCompatActivity implements Constants,Weather
                 openChangingCity();
             }
         });
+
+        Picasso.with(this)
+                .load("https://live.staticflickr.com/7577/15574007890_b34571c228_z.jpg")
+                .transform(new Transformation() {
+                    @Override
+                    public Bitmap transform(Bitmap source) {
+                        Path path = new Path();
+                        path.addCircle(source.getWidth()/2,
+                                source.getHeight()/2,
+                                source.getHeight()/2,
+                                Path.Direction.CCW);
+                        Bitmap dstBmp = Bitmap.createBitmap(source.getWidth(),source.getHeight(),
+                                Bitmap.Config.ARGB_8888);
+                        Canvas canvas = new Canvas(dstBmp);
+                        canvas.clipPath(path);
+                        canvas.drawBitmap(source,0,0, new Paint(Paint.ANTI_ALIAS_FLAG));
+                        source.recycle();
+                        return dstBmp;
+                    }
+
+                    @Override
+                    public String key() {
+                        return "circle";
+                    }
+                })
+                .error(R.drawable.sun)
+                .into((ImageView) findViewById(R.id.picassoView));
 
 //        ArrayList<WeekDayItem> weekDayItems = new ArrayList<>();
 //
@@ -199,11 +236,11 @@ public class MainActivity extends AppCompatActivity implements Constants,Weather
 
                 switch (sensorEvent.sensor.getType()){
                     case Sensor.TYPE_AMBIENT_TEMPERATURE:
-                        Log.i("SENSORS", "TEMP= " + sensorEvent.values[0]);
+                      //  Log.i("SENSORS", "TEMP= " + sensorEvent.values[0]);
                         break;
 
                     case Sensor.TYPE_RELATIVE_HUMIDITY:
-                        Log.i("SENSORS", "HUM= " + sensorEvent.values[0]);
+                       // Log.i("SENSORS", "HUM= " + sensorEvent.values[0]);
                         break;
 
                 }

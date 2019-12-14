@@ -10,19 +10,35 @@
 
     <WebView
         android:id="@+id/page"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_width="386dp"
+        android:layout_height="185dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="4dp"
         android:background="@null"
         app:layout_constraintBottom_toTopOf="@+id/scrollView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/picassoView"
+        android:layout_width="395dp"
+        android:layout_height="200dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="16dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/weather_image"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/page"
+        app:srcCompat="@drawable/sun"/>
 
     <ScrollView
         android:id="@+id/scrollView"
@@ -30,7 +46,7 @@
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
@@ -50,7 +66,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
-
 
             <TextView
                 android:id="@+id/dateTextView"
@@ -121,6 +136,7 @@
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/weekTemp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.546"
                 app:layout_constraintStart_toEndOf="@+id/cityTextView"
                 app:layout_constraintTop_toBottomOf="@+id/timeTextView"
                 tools:ignore="RtlHardcoded" />
@@ -136,35 +152,13 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginBottom="8dp"
-                app:layout_constraintBottom_toTopOf="@+id/squareView"
+                app:layout_constraintBottom_toTopOf="@+id/changeLocation"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="parent"
+                app:layout_constraintVertical_bias="0.619"
                 tools:layout="@layout/week_temp" />
-
-
-
-            <com.example.android1_lesson1.squareView
-                android:id="@+id/squareView"
-                android:layout_width="400dp"
-                android:layout_height="45dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginBottom="8dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:visibility="visible"
-                app:cv_color="#00FF00"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/weekTemp"
-                tools:visibility="visible" />
-
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -213,6 +207,27 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/weekTemp"
                 tools:layout="@layout/weather_icons" />
+
+        <com.example.android1_lesson1.squareView
+                android:id="@+id/squareView"
+                android:layout_width="400dp"
+                android:layout_height="45dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:visibility="visible"
+                app:cv_color="#00FF00"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/weekTemp"
+                tools:visibility="visible" />
+
 -->
 
 
