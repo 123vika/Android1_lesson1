@@ -26,6 +26,7 @@ public class WeatherFragment extends Fragment implements WeatherProviderListener
     public View onCreateView (LayoutInflater inflater, ViewGroup container,
                               Bundle saveInstanceState){
         return inflater.inflate(week_temp , container, false);
+
     }
     @Override
     public void onAttach (Context context){
